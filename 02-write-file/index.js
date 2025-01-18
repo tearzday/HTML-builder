@@ -14,16 +14,14 @@ const rl = readline.createInterface({
 });
 
 rl.on('line', (data) => {
-  if (data === 'exit') {
+  if (data.toString().trim() === 'exit') {
     closeReadline();
   } else {
     stream.write(data + '\n');
   }
 });
 
-rl.on('SIGINT', () => {
-  closeReadline();
-});
+rl.on('SIGINT', closeReadline);
 
 function closeReadline() {
   rl.close();
